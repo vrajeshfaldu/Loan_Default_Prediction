@@ -1,0 +1,594 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  html.light {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  html.light body {
+    background-color: #f8fafc;
+    color: #0f172a;
+  }
+  html.dark body {
+    background-color: #080c14;
+    color: #f1f5f9;
+  }
+  
+  /* JetBrains Mono for numbers & telemetry */
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* =========================================
+   CYBERNETIC BACKGROUND GRID ANIMATIONS
+========================================= */
+.cyber-grid {
+  background-size: 40px 40px;
+}
+html.light .cyber-grid {
+  background-image: 
+    linear-gradient(to right, rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(37, 99, 235, 0.04) 1px, transparent 1px);
+}
+html.dark .cyber-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.cyber-grid-animated {
+  animation: gridMove 20s linear infinite;
+}
+html.light .cyber-grid-animated {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+}
+html.dark .cyber-grid-animated {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(6, 182, 212, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(59, 130, 246, 0.06) 1px, transparent 1px);
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+/* =========================================
+   KEYFRAME ANIMATIONS
+========================================= */
+@keyframes auroraFast {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(40px, 30px) scale(1.08) rotate(15deg);
+  }
+}
+
+@keyframes auroraFastReverse {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(-35px, -30px) scale(1.06) rotate(-15deg);
+  }
+}
+
+@keyframes driftFast {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-40px, -30px) scale(1.1);
+  }
+}
+
+@keyframes laserShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.25), inset 0 0 15px rgba(37, 99, 235, 0.08);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(6, 182, 212, 0.5), inset 0 0 25px rgba(37, 99, 235, 0.2);
+  }
+}
+
+@keyframes pulseEmerald {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(16, 185, 129, 0.55);
+  }
+}
+
+@keyframes pulseCrimson {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(239, 68, 68, 0.55);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scanLineGlow {
+  0% {
+    top: -20%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    top: 120%;
+    opacity: 0;
+  }
+}
+
+/* Animation utility classes */
+.animate-aurora-fast {
+  animation: auroraFast 14s ease-in-out infinite;
+}
+
+.animate-aurora-fast-reverse {
+  animation: auroraFastReverse 16s ease-in-out infinite;
+}
+
+.animate-drift-fast {
+  animation: driftFast 12s ease-in-out infinite;
+}
+
+.animate-laser {
+  animation: laserShimmer 2.5s ease-in-out infinite;
+}
+
+.animate-glow-blue {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+.animate-glow-emerald {
+  animation: pulseEmerald 2.5s ease-in-out infinite;
+}
+
+.animate-glow-crimson {
+  animation: pulseCrimson 2.5s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* =========================================
+   HOVER CARDS (DUAL THEME SUPPORT)
+========================================= */
+
+/* Base & Light Mode */
+.hover-card {
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.35s ease;
+}
+
+html.light .hover-card {
+  background-color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+}
+
+html.light .hover-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(37, 99, 235, 0.06), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+html.light .hover-card:hover {
+  transform: translateY(-4px) scale(1.005);
+  border-color: rgba(37, 99, 235, 0.45);
+  background-color: #ffffff;
+  box-shadow: 0 20px 45px -12px rgba(37, 99, 235, 0.18), 
+              0 0 25px rgba(59, 130, 246, 0.1),
+              inset 0 0 20px rgba(37, 99, 235, 0.02);
+}
+
+/* Dark Mode */
+html.dark .hover-card {
+  background-color: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+}
+
+html.dark .hover-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(6, 182, 212, 0.08), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+html.dark .hover-card:hover {
+  transform: translateY(-4px) scale(1.005);
+  border-color: rgba(6, 182, 212, 0.55);
+  background-color: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.8), 
+              0 0 30px rgba(6, 182, 212, 0.22),
+              inset 0 0 20px rgba(6, 182, 212, 0.04);
+}
+
+.hover-card:hover::before {
+  opacity: 1;
+}
+
+/* =========================================
+   BUTTONS (DUAL THEME SUPPORT)
+========================================= */
+
+/* Primary Button */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #0284c7 100%);
+  color: #ffffff;
+  border: 1px solid rgba(147, 197, 253, 0.6);
+  box-shadow: 0 8px 25px -4px rgba(37, 99, 235, 0.4);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 0.25s ease,
+              border-color 0.25s ease;
+}
+
+html.dark .btn-primary {
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.25) 40%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0.25) 60%,
+    transparent 80%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.btn-primary:hover::after {
+  transform: translateX(100%);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2.5px) scale(1.02);
+  border-color: rgba(96, 165, 250, 0.95);
+  box-shadow: 0 12px 35px -5px rgba(37, 99, 235, 0.55), 0 0 25px rgba(6, 182, 212, 0.35);
+  filter: brightness(1.08);
+}
+
+html.dark .btn-primary:hover {
+  border-color: rgba(6, 182, 212, 0.9);
+  box-shadow: 0 0 35px rgba(6, 182, 212, 0.6), 0 10px 25px rgba(59, 130, 246, 0.45);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.25s ease, 
+              background-color 0.25s ease,
+              color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+html.light .btn-secondary {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+  box-shadow: 0 4px 15px -2px rgba(0, 0, 0, 0.05);
+}
+
+html.light .btn-secondary:hover {
+  transform: translateY(-2.5px);
+  border-color: rgba(37, 99, 235, 0.6);
+  background-color: #f0f7ff;
+  color: #1d4ed8;
+  box-shadow: 0 8px 25px -4px rgba(37, 99, 235, 0.15);
+}
+
+html.dark .btn-secondary {
+  background-color: rgba(15, 23, 42, 0.95);
+  border: 1px solid #334155;
+  color: #f1f5f9;
+  box-shadow: 0 4px 15px -2px rgba(0, 0, 0, 0.5);
+}
+
+html.dark .btn-secondary:hover {
+  transform: translateY(-2.5px);
+  border-color: rgba(6, 182, 212, 0.7);
+  background-color: rgba(30, 41, 59, 0.95);
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 22px rgba(6, 182, 212, 0.25);
+}
+
+.btn-secondary:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* =========================================
+   INPUTS (DUAL THEME SUPPORT)
+========================================= */
+.input-cyber {
+  transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.25s ease,
+              transform 0.2s ease;
+}
+
+html.light .input-cyber {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+}
+html.light .input-cyber:hover {
+  border-color: rgba(37, 99, 235, 0.5);
+  background-color: #ffffff;
+}
+html.light .input-cyber:focus {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18), 0 0 15px rgba(37, 99, 235, 0.12) !important;
+  background-color: #ffffff !important;
+}
+
+html.dark .input-cyber {
+  background-color: rgba(15, 23, 42, 0.9);
+  border: 1px solid #334155;
+  color: #f8fafc;
+}
+html.dark .input-cyber:hover {
+  border-color: rgba(6, 182, 212, 0.5);
+  background-color: rgba(15, 23, 42, 0.95);
+}
+html.dark .input-cyber:focus {
+  border-color: rgba(6, 182, 212, 0.9) !important;
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2), 0 0 20px rgba(6, 182, 212, 0.25) !important;
+  background-color: rgba(15, 23, 42, 1) !important;
+}
+
+/* Interactive Glowing Metrics on Hover */
+.metric-row {
+  transition: all 0.25s ease;
+}
+
+html.light .metric-row:hover {
+  transform: translateX(4px);
+  background-color: rgba(37, 99, 235, 0.06);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+html.dark .metric-row:hover {
+  transform: translateX(4px);
+  background-color: rgba(6, 182, 212, 0.05);
+  border-color: rgba(6, 182, 212, 0.3);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #080c14;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+
+/* =========================================
+   ARROW EFFECTS & ANIMATIONS
+========================================= */
+
+/* 1. Smooth Spring Slide on Group Hover */
+.arrow-slide-right {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.25s ease;
+}
+.group:hover .arrow-slide-right,
+button:hover .arrow-slide-right,
+a:hover .arrow-slide-right {
+  transform: translateX(5px);
+}
+
+.arrow-slide-left {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.25s ease;
+}
+.group:hover .arrow-slide-left,
+button:hover .arrow-slide-left,
+a:hover .arrow-slide-left {
+  transform: translateX(-5px);
+}
+
+/* 2. Warp Pass-Through Effect */
+.arrow-warp-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 1.25em;
+  height: 1.25em;
+}
+.arrow-warp-primary {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.arrow-warp-secondary {
+  position: absolute;
+  transform: translateX(-150%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.group:hover .arrow-warp-primary,
+button:hover .arrow-warp-primary {
+  transform: translateX(150%);
+}
+.group:hover .arrow-warp-secondary,
+button:hover .arrow-warp-secondary {
+  transform: translateX(0);
+}
+
+/* 3. Continuous Cyber Pulsing Arrow (Horizontal) */
+@keyframes arrowPulseX {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateX(6px);
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.7));
+  }
+}
+.animate-arrow-pulse-x {
+  animation: arrowPulseX 1.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+/* 4. Floating Scroll Indicator (Vertical Bounce) */
+@keyframes arrowFloatY {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+    filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.7));
+  }
+}
+.animate-arrow-float-y {
+  animation: arrowFloatY 2s ease-in-out infinite;
+}
+
+/* 5. Expanding Tail Line Arrow */
+.arrow-expand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  transition: gap 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.arrow-expand-line {
+  width: 0px;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+  opacity: 0;
+  border-radius: 9999px;
+}
+.group:hover .arrow-expand-line,
+button:hover .arrow-expand-line,
+a:hover .arrow-expand-line {
+  width: 14px;
+  opacity: 1;
+}
+
+/* 6. Cascading Multi-Chevron Wave Flow */
+@keyframes chevronWave {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    color: #0284c7;
+    transform: translateX(2px);
+  }
+}
+.chevron-wave-1 {
+  animation: chevronWave 1.4s ease-in-out infinite;
+  animation-delay: 0s;
+}
+.chevron-wave-2 {
+  animation: chevronWave 1.4s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+.chevron-wave-3 {
+  animation: chevronWave 1.4s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
