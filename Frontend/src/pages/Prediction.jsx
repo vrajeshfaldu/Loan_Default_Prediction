@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import.meta.env.VITE_API_URL;
 
 const Prediction = () => {
   const navigate = useNavigate();
@@ -123,7 +124,7 @@ const Prediction = () => {
     setErrorMessage("");
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/predict", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/predict`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
